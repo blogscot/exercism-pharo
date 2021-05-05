@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 Grains >> atSquare: pos [
-	pos > 0 & (pos <= 64)
+	(pos between: 1 and: 64)
 		ifFalse: [ ^ self error: 'square must be between 1 and 64' ].
 	^ 2 raisedTo: pos - 1
 ]
