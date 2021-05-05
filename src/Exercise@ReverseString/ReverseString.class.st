@@ -4,12 +4,10 @@ Class {
 	#category : #'Exercise@ReverseString'
 }
 
-{ #category : #conversion }
-ReverseString >> reverseValue: text [
-	| len myArr index |
-	len := text size.
-	myArr := String new: len.
-	index := len + 1.
-	1 to: len do: [ :x | myArr at: x put: (text at: (index := index - 1)) ].
-	^ myArr
+{ #category : #converting }
+ReverseString >> reverseValue: aString [
+	| aStream |
+	aStream := WriteStream on: String new.
+	aString size to: 1 by: -1 do: [ :i | aStream nextPut: (aString at: i) ].
+	^ aStream contents
 ]
