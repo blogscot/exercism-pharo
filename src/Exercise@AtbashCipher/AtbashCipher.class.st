@@ -26,7 +26,7 @@ AtbashCipher >> encodePhrase: aString [
 { #category : #initialization }
 AtbashCipher >> initialize [
 	| alphabet cipher digits |
-	alphabet := 'abcdefghijklmnopqrstuvwxyz'.
+	alphabet := $a to: $z.
 	cipher := alphabet reversed.
 
 	"Digits are not enciphered"
@@ -35,7 +35,7 @@ AtbashCipher >> initialize [
 	cipher := cipher , digits.
 	
 	dict := Dictionary new.
-	alphabet doWithIndex: [ :each :i | dict add: each->(cipher at: i) ].
+	alphabet with: cipher collect: [ :key :value | dict add: key->value ].
 ]
 
 { #category : #utils }
@@ -47,13 +47,13 @@ AtbashCipher >> insertSpace: text at: n [
 	text
 		doWithIndex: [ :char :i | 
 			aStream nextPut: char.
-			(i rem: n) isZero
-				ifTrue: [ aStream nextPut: $  ] ].
+			(i isDivisibleBy: n)
+				ifTrue: [ aStream nextPut: Character space ] ].
 	^ aStream contents trimRight
 ]
 
 { #category : #utils }
 AtbashCipher >> onlyLettersOrDigits: aString [
- ^ aString select: [ :each | each isDigit | each isLetter ] 
+ ^ aString select: [ :each | each isAlphaNumeric ] 
 
 ]
