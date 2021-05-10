@@ -2,16 +2,18 @@ Extension { #name : #SmallInteger }
 
 { #category : #'*Exercise@Die' }
 SmallInteger >> d10 [
-	| handle |
-	handle := DieHandle new.
-	1 to: self do: [ :each | handle addDie: (Die withFaces: 10) ].
-	^ handle
+	^ self d: 10
 ]
 
 { #category : #'*Exercise@Die' }
 SmallInteger >> d20 [
+	^ self d: 20
+]
+
+{ #category : #'*Exercise@Die' }
+SmallInteger >> d: sides [
 	| handle |
 	handle := DieHandle new.
-	1 to: self do: [ :each | handle addDie: (Die withFaces: 20) ].
+	self timesRepeat: [ handle addDie: (Die withFaces: sides) ].
 	^ handle
 ]

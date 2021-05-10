@@ -30,10 +30,10 @@ DieHandle >> diceNumber [
 
 { #category : #initialization }
 DieHandle >> initialize [
-	dice := Bag new.
+	dice := Bag new
 ]
 
 { #category : #'as yet unclassified' }
 DieHandle >> roll [ 
-	^ dice inject: 0 into: [ :sum :each | sum + (each roll) ]
+	^ dice sum: [ :each | each roll ]
 ]

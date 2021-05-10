@@ -32,7 +32,7 @@ Die >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPutAll: ' (' ;
-		nextPutAll: faces asString;
+		print: faces ;
 		nextPutAll: ')'
 ]
 
